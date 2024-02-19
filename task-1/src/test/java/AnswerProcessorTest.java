@@ -5,17 +5,31 @@ import org.junit.jupiter.api.Test;
 public class AnswerProcessorTest {
 
     @Test
-    void isGuessValidTest() {
-        Assertions.assertTrue(AnswerProcessor.isGuessValid("3215"));
-        Assertions.assertTrue(AnswerProcessor.isGuessValid("9712"));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid("32150"));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid("32 15"));
-        Assertions.assertTrue(AnswerProcessor.isGuessValid("3255"));
-        Assertions.assertTrue(AnswerProcessor.isGuessValid("3333"));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid("32a15"));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid("abcd"));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid(""));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid(" "));
-        Assertions.assertFalse(AnswerProcessor.isGuessValid("\n"));
+    void positionsTest() {
+        AnswerProcessor answerProcessor = new AnswerProcessor();
+
+        answerProcessor.check("1234", "1234");
+        Assertions.assertEquals(4, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(0, answerProcessor.getMisMatchingPos());
+
+        answerProcessor.check("1233", "1234");
+        Assertions.assertEquals(3, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(1, answerProcessor.getMisMatchingPos());
+
+        answerProcessor.check("1111", "1234");
+        Assertions.assertEquals(1, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(3, answerProcessor.getMisMatchingPos());
+
+        answerProcessor.check("5678", "1234");
+        Assertions.assertEquals(0, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(0, answerProcessor.getMisMatchingPos());
+
+        answerProcessor.check("4567", "1234");
+        Assertions.assertEquals(0, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(1, answerProcessor.getMisMatchingPos());
+
+        answerProcessor.check("1243", "1234");
+        Assertions.assertEquals(2, answerProcessor.getMatchingPos());
+        Assertions.assertEquals(2, answerProcessor.getMisMatchingPos());
     }
 }

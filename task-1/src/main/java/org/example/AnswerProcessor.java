@@ -1,36 +1,30 @@
 package org.example;
 
 import java.util.Objects;
-import java.util.regex.*;
 
 public class AnswerProcessor {
-    private static int matchingPos = 0;
-    private static int mismatchingPos = 0;
-    private static boolean isAnswered = false;
+    private int matchingPos = 0;
+    private int misMatchingPos = 0;
+    private boolean isAnswered = false;
 
-    public static int getMatchingPos() {
+    public int getMatchingPos() {
         return matchingPos;
     }
 
-    public static int getMismatchingPos() {
-        return mismatchingPos;
+    public int getMisMatchingPos() {
+        return misMatchingPos;
     }
 
-    public static boolean isGuessed() {
+    public boolean isGuessed() {
         return isAnswered;
     }
 
-    public static boolean isGuessValid(String guess) {
-        Pattern validRegex = Pattern.compile("^[0-9]{4}$");
-        Matcher matcher = validRegex.matcher(guess);
-        return matcher.find();
-    }
-
-    public static void check(String guess, String answer) {
+    public void check(String guess, String answer) {
         matchingPos = 0;
-        mismatchingPos = 0;
+        misMatchingPos = 0;
         if (Objects.equals(guess, answer)) {
             isAnswered = true;
+            matchingPos = 4;
         }
         else {
             for (int i = 0; i < 4; i++) {
@@ -39,7 +33,7 @@ public class AnswerProcessor {
                 }
                 else {
                     if (answer.indexOf(guess.charAt(i)) != -1) {
-                        mismatchingPos++;
+                        misMatchingPos++;
                     }
                 }
             }
