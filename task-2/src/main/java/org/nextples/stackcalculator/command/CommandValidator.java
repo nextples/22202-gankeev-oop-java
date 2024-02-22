@@ -5,7 +5,7 @@ import java.util.regex.*;
 
 public class CommandValidator {
     public static boolean isValid(String command) {
-        Pattern popPattern = Pattern.compile("^POP\s*$");
+        Pattern popPattern = Pattern.compile("^POP *$");
         Pattern pushPattern = Pattern.compile("^PUSH ((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*)|([A-z][0-z_]*)) *$");
         Pattern plusPattern = Pattern.compile("^PLUS *$");
         Pattern subPattern = Pattern.compile("^SUB *$");
