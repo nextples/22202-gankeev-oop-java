@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -29,7 +30,6 @@ public class StackCalculator {
             System.exit(1);
         }
 
-
         ArrayList<String> commandLines = new ArrayList<>();
         while (currentLine != null) {
             if (CommandValidator.isValid(currentLine) && !CommandValidator.isComment(currentLine)) {
@@ -37,7 +37,6 @@ public class StackCalculator {
             }
             if (!CommandValidator.isValid(currentLine)) {
                 throw new InvalidCommandException("An unknown command <<" + currentLine + ">> in <<" + path + ">>");
-
             }
             try {
                 currentLine = bufferedReader.readLine();
@@ -46,7 +45,6 @@ public class StackCalculator {
                 System.exit(1);
             }
         }
-
 
         ExecutionContext context = ExecutionContext.init();
         for (String commandLine : commandLines) {
@@ -69,6 +67,14 @@ public class StackCalculator {
             }
             catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 System.err.println("bad input");
+            }
+            catch (EmptyStackException e) {
+                System.err.println("The command <<" + commandLine + ">> cannot be executed. " +
+                        "There is a shortage of arguments in the stack or the stack is empty. The command was skipped");
+            }
+            catch (ArithmeticException e) {
+                System.err.println("The command <<" + commandLine + ">> cannot be executed. " +
+                        "An arithmetic error has occurred. The command was skipped");
             }
         }
     }
@@ -100,6 +106,10 @@ public class StackCalculator {
                 }
                 catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                     System.err.println("bad input");
+                }
+                catch (EmptyStackException e) {
+                    System.err.println("The command <<" + line + ">> cannot be executed. " +
+                            "There is a shortage of arguments in the stack or the stack is empty. The command was skipped");
                 }
             }
             if (!CommandValidator.isValid(line)) {

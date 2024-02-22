@@ -1,5 +1,6 @@
 package org.nextples.stackcalculator;
 
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -18,14 +19,13 @@ public class ExecutionContext {
             map = new HashMap<>();
         }
         return instance;
-
     }
 
-    public double stackPeek() {
+    public double stackPeek() throws EmptyStackException {
         return stack.peek();
     }
 
-    public void stackPop() {
+    public void stackPop() throws EmptyStackException {
         stack.pop();
     }
 
