@@ -1,4 +1,6 @@
-package org.example;
+package org.nextples;
+
+import org.nextples.stackcalculator.*;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {

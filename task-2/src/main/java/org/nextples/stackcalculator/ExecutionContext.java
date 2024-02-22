@@ -1,4 +1,4 @@
-package org.example;
+package org.nextples.stackcalculator;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -39,12 +39,6 @@ public class ExecutionContext {
 
     public void mapPut(String key, double val) {
         map.put(key, val);
-    }
-
-    public void fillTest() {
-        stack.push(25.0);
-        stack.push(10.0);
-        map.put("a", 256.0);
     }
 
 }

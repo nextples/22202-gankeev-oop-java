@@ -1,4 +1,4 @@
-package org.example;
+package org.nextples.stackcalculator.command;
 
 import java.util.Objects;
 import java.util.regex.*;

@@ -1,6 +1,8 @@
-package org.example;
+package org.nextples.stackcalculator.command;
 
-public class Div implements NonParameterCommand {
+import org.nextples.stackcalculator.ExecutionContext;
+
+public class Sub implements NonParameterCommand {
 
     @Override
     public void execute(ExecutionContext context) {
@@ -8,7 +10,7 @@ public class Div implements NonParameterCommand {
         context.stackPop();
         double arg1 = context.stackPeek();
         context.stackPop();
-        double result = arg1 / arg2;
+        double result = arg1 - arg2;
         context.stackPush(result);
     }
 }
