@@ -1,6 +1,4 @@
-package org.nextples.stackcalculator.creator;
-
-import org.nextples.stackcalculator.command.*;
+package org.nextples.stackcalculator;
 
 public class PushCreator implements CommandCreator {
 

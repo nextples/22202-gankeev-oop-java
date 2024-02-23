@@ -1,6 +1,4 @@
-package org.nextples.stackcalculator.command;
-
-import org.nextples.stackcalculator.ExecutionContext;
+package org.nextples.stackcalculator;
 
 public interface NonParameterCommand extends Command{
     void execute(ExecutionContext context);

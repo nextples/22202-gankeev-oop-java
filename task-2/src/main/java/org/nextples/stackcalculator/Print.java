@@ -1,6 +1,5 @@
-package org.nextples.stackcalculator.command;
+package org.nextples.stackcalculator;
 
-import org.nextples.stackcalculator.ExecutionContext;
 import java.util.EmptyStackException;
 
 public class Print implements NonParameterCommand {

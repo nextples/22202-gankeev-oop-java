@@ -1,9 +1,5 @@
 package org.nextples.stackcalculator;
 
-import org.nextples.stackcalculator.command.*;
-import org.nextples.stackcalculator.creator.*;
-import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
-import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
 import java.util.EmptyStackException;
 
 public class StackCalculator {

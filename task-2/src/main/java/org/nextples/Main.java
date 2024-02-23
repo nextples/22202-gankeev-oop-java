@@ -1,12 +1,6 @@
 package org.nextples;
 
 import org.nextples.stackcalculator.*;
-import org.nextples.stackcalculator.command.Command;
-import org.nextples.stackcalculator.command.CommandValidator;
-import org.nextples.stackcalculator.command.NonParameterCommand;
-import org.nextples.stackcalculator.command.ParameterCommand;
-import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
-import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -86,16 +80,16 @@ public class Main {
                 }
             }
             else if (!CommandValidator.isValid(commandLine)) {
-                System.err.println("An unknown command <<" + commandLine + ">>\n\nCommand was skipped");
+                System.err.println("An unknown command <<" + commandLine + ">>\nCommand was skipped\n");
             }
         }
         catch (InvalidArgumentException | InvalidParameterNameException e) {
             System.err.println(e.getMessage());
-            System.err.println("\nCommand was skipped");
+            System.err.println("Command was skipped\n");
         }
         catch (EmptyStackException e) {
             System.err.println("The problem of extracting items from the stack. There are not enough elements in the stack or the stack is empty");
-            System.err.println("\nCommand was skipped");
+            System.err.println("Command was skipped\n");
         }
     }
 }

@@ -1,10 +1,7 @@
-package org.nextples.stackcalculator.command;
+package org.nextples.stackcalculator;
 
 import java.util.Objects;
 import java.util.regex.*;
-import org.nextples.stackcalculator.ExecutionContext;
-import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
-import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
 
 public class Push implements ParameterCommand{
 

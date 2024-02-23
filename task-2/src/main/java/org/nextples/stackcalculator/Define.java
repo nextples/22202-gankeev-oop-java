@@ -1,7 +1,5 @@
-package org.nextples.stackcalculator.command;
+package org.nextples.stackcalculator;
 
-import org.nextples.stackcalculator.ExecutionContext;
-import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

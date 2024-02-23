@@ -1,4 +1,4 @@
-package org.nextples.stackcalculator.exceptions;
+package org.nextples.stackcalculator;
 
 public class InvalidParameterNameException extends Exception {
     public InvalidParameterNameException(String message) {
