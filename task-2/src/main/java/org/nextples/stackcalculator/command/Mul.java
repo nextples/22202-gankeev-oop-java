@@ -1,7 +1,6 @@
 package org.nextples.stackcalculator.command;
 
 import org.nextples.stackcalculator.ExecutionContext;
-
 import java.util.EmptyStackException;
 
 public class Mul implements NonParameterCommand {

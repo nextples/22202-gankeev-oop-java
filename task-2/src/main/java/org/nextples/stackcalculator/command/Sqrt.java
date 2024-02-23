@@ -2,7 +2,6 @@ package org.nextples.stackcalculator.command;
 
 import static java.lang.Math.sqrt;
 import org.nextples.stackcalculator.ExecutionContext;
-
 import java.util.EmptyStackException;
 
 public class Sqrt implements NonParameterCommand {

@@ -8,6 +8,4 @@ public class PrintCreator implements CommandCreator {
     public Command create() {
         return new Print();
     }
-
-
 }

@@ -7,7 +7,6 @@ import org.nextples.stackcalculator.command.NonParameterCommand;
 import org.nextples.stackcalculator.command.ParameterCommand;
 import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
 import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -33,20 +32,6 @@ public class Main {
             System.err.println("the file " + args[0] + " contains an unknown command. " +
                         "It is possible that the command name does not match the class name (if the command is external)");
         }
-
-
-//        if (args.length > 1) {
-//            System.out.println("Incorrect number of arguments. Pass only one file");
-//        } else if (args.length == 1) {
-//            try {
-//                StackCalculator.executeFromFile(args[0]);
-//            } catch (InvalidCommandException e) {
-//                System.err.println(e.getMessage());
-//                System.exit(1);
-//            }
-//        } else {
-//            StackCalculator.executeFromCommandLine();
-//        }
     }
 
     private static void readFromFile(String path) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -65,30 +50,6 @@ public class Main {
 
         ExecutionContext context = ExecutionContext.init();
         while (commandLine != null) {
-//            try {
-//                if (CommandValidator.isValid(commandLine) && !CommandValidator.isComment(commandLine)) {
-//                    Command command = StackCalculator.getCommandByLine(commandLine);
-//                    String args = StackCalculator.getArgsByLine(commandLine);
-//                    if (command instanceof ParameterCommand) {
-//                        StackCalculator.executeCommand((ParameterCommand) command, args, context);
-//                    } else if (command instanceof NonParameterCommand) {
-//                        StackCalculator.executeCommand((NonParameterCommand) command, context);
-//                    }
-//                }
-//                else if (!CommandValidator.isValid(commandLine)) {
-//                    System.err.println("An unknown command <<" + commandLine + ">> in <<" + path + ">>\nProgram has been terminated");
-//                    System.exit(1);
-//                }
-//            }
-//            catch (InvalidArgumentException | InvalidParameterNameException e) {
-//                System.err.println(e.getMessage());
-//                System.err.println("\nCommand was skipped");
-//            }
-//            catch (EmptyStackException e) {
-//                System.err.println("The problem of extracting items from the stack. There are not enough elements in the stack or the stack is empty");
-//                System.err.println("\nCommand was skipped");
-//            }
-
             executeStringCommand(commandLine, context);
 
             try {

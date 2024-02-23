@@ -11,7 +11,6 @@ public class ExecutionContext {
 
     private ExecutionContext() {}
 
-
     public static ExecutionContext init() {
         if(instance == null) {
             instance = new ExecutionContext();

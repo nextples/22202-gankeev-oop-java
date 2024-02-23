@@ -2,7 +2,6 @@ package org.nextples.stackcalculator.command;
 
 import java.util.Objects;
 import java.util.regex.*;
-
 import org.nextples.stackcalculator.ExecutionContext;
 import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
 import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
