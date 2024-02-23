@@ -1,31 +1,38 @@
 package org.nextples.stackcalculator.command;
 
+import java.util.Objects;
 import java.util.regex.*;
 
 import org.nextples.stackcalculator.ExecutionContext;
+import org.nextples.stackcalculator.exceptions.InvalidArgumentException;
+import org.nextples.stackcalculator.exceptions.InvalidParameterNameException;
 
 public class Push implements ParameterCommand{
 
     @Override
-    public void execute(String args, ExecutionContext context) {
-        args = args.replaceAll(" ", "");
+    public void execute(String args, ExecutionContext context) throws InvalidArgumentException, InvalidParameterNameException {
+        if (!isArgsValid(args)) {
+            throw new InvalidArgumentException("Command " + this + " received incorrect arguments\n");
+        }
 
+        args = args.replaceAll(" ", "");
         if (isNumber(args)) {
             double value = Double.parseDouble(args);
             context.stackPush(value);
         }
         else {
-            // Найти по параметру значение в мапе и положить значение в стек
-            try {
-                double value = context.mapGet(args);
-                context.stackPush(value);
+            double value = context.mapGet(args);
+            if (Objects.isNull(context.mapGet(args))) {
+                throw new InvalidParameterNameException("Command " + this + " received unknown parameter " + args);
             }
-            catch (NullPointerException e) {
-                System.err.println("an unknown parameter was passed ТУТ ДОБАВИТЬ НАДО ПОДРОБНОСТИ ВЫВОДА");
-                System.exit(1);
-            }
-//            context.stackPush(value);
+            context.stackPush(value);
         }
+    }
+
+    private boolean isArgsValid(String args) {
+        Pattern pushArgPattern = Pattern.compile("^ *((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*)|([A-z][0-z_]*)) *$");
+        Matcher pushArgMatcher = pushArgPattern.matcher(args);
+        return pushArgMatcher.find();
     }
 
     private boolean isNumber(String args) {
