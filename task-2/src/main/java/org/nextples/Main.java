@@ -3,6 +3,7 @@ package org.nextples;
 import org.nextples.stackcalculator.*;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.EmptyStackException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -18,8 +19,15 @@ public class Main {
             try {
                 scanner = new Scanner(new FileInputStream(args[0]));
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getLocalizedMessage());
             }
+        }
+
+        CommandFactory factory;
+        try {
+            factory = new CommandFactory();
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
         }
     }
 
