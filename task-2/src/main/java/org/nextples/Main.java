@@ -1,32 +1,48 @@
 package org.nextples;
 
 import org.nextples.stackcalculator.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.EmptyStackException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        try {
-            if (args.length > 1) {
-                System.out.println("Incorrect number of arguments. Pass only one file");
-            }
-            else if (args.length == 1) {
-                readFromFile(args[0]);
-            }
-            else {
-                readFromCommandLine();
-            }
+        Scanner scanner;
+        if (args.length == 0) {
+            scanner = new Scanner(System.in);
         }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            System.err.println("the file " + args[0] + " contains an unknown command. " +
-                        "It is possible that the command name does not match the class name (if the command is external)");
+        else {
+            try {
+                scanner = new Scanner(new FileInputStream(args[0]));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+
+
+
+
+//    public static void main(String[] args) {
+//        try {
+//            if (args.length > 1) {
+//                System.out.println("Incorrect number of arguments. Pass only one file");
+//            }
+//            else if (args.length == 1) {
+//                readFromFile(args[0]);
+//            }
+//            else {
+//                readFromCommandLine();
+//            }
+//        }
+//        catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+//            System.err.println("the file " + args[0] + " contains an unknown command. " +
+//                        "It is possible that the command name does not match the class name (if the command is external)");
+//        }
+//    }
 
     private static void readFromFile(String path) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         BufferedReader bufferedReader = null;
