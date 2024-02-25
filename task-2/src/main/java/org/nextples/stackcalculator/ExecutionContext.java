@@ -8,7 +8,7 @@ public class ExecutionContext {
     private final Stack<Double> stack;
     private final HashMap<String, Double> parameters;
 
-    private ExecutionContext() {
+    public ExecutionContext() {
         this.stack = new Stack<>();
         this.parameters = new HashMap<>();
     }
