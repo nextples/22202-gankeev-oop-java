@@ -19,7 +19,7 @@ public class CommandFactory {
         this.loadCommands();
     }
 
-    private Command createCommand(String name) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public Command createCommand(String name) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
         return (Command) Class.forName(name).getDeclaredConstructors()[0].newInstance();
     }
 
