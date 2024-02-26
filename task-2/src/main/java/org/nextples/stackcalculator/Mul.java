@@ -5,12 +5,20 @@ import java.util.EmptyStackException;
 public class Mul implements NonParameterCommand {
 
     @Override
-    public void execute(ExecutionContext context) throws EmptyStackException {
-        double arg2 = context.stackPeek();
-        context.stackPop();
-        double arg1 = context.stackPeek();
-        context.stackPop();
+    public void execute(ExecutionContext context) throws IllegalAccessException {
+        if (context.getStack().empty()) {
+            throw new IllegalAccessException("Attempt to access an element from an empty stack");
+        }
+        double arg2 = (double) context.getStack().peek();
+        context.getStack().pop();
+
+        if (context.getStack().empty()) {
+            throw new IllegalAccessException("Attempt to access an element from an empty stack");
+        }
+        double arg1 = (double) context.getStack().peek();
+        context.getStack().pop();
+
         double result = arg1 * arg2;
-        context.stackPush(result);
+        context.getStack().push(result);
     }
 }

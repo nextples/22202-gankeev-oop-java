@@ -1,20 +1,23 @@
 package org.nextples.stackcalculator;
 
 import static java.lang.Math.sqrt;
-import java.util.EmptyStackException;
 
 public class Sqrt implements NonParameterCommand {
 
     @Override
-    public void execute(ExecutionContext context) throws ArithmeticException, EmptyStackException {
-        double arg = context.stackPeek();
-        context.stackPop();
+    public void execute(ExecutionContext context) throws ArithmeticException, IllegalAccessException {
+        if (context.getStack().empty()) {
+            throw new IllegalAccessException("Attempt to access an element from an empty stack");
+        }
+        double arg = (double) context.getStack().peek();
+        context.getStack().pop();
+
         if (arg < 0) {
-            throw new ArithmeticException("invalid extraction of the square root of " + arg);
+            throw new ArithmeticException("Invalid extraction of the square root of " + arg);
         }
         else {
             double result = sqrt(arg);
-            context.stackPush(result);
+            context.getStack().push(result);
         }
     }
 }

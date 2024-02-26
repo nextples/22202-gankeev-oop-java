@@ -5,15 +5,23 @@ import java.util.EmptyStackException;
 public class Div implements NonParameterCommand {
 
     @Override
-    public void execute(ExecutionContext context) throws ArithmeticException, EmptyStackException {
-        double arg2 = context.stackPeek();
-        context.stackPop();
-        double arg1 = context.stackPeek();
-        context.stackPop();
+    public void execute(ExecutionContext context) throws ArithmeticException, IllegalAccessException {
+        if (context.getStack().empty()) {
+            throw new IllegalAccessException("Attempt to access an element from an empty stack");
+        }
+        double arg2 = (double) context.getStack().peek();
+        context.getStack().pop();
+
+        if (context.getStack().empty()) {
+            throw new IllegalAccessException("Attempt to access an element from an empty stack");
+        }
+        double arg1 = (double) context.getStack().peek();
+        context.getStack().pop();
+
         if (arg2 == 0) {
             throw new ArithmeticException("Invalid division by zero: " + arg1 + " / " + arg2);
         }
         double result = arg1 / arg2;
-        context.stackPush(result);
+        context.getStack().push(result);
     }
 }

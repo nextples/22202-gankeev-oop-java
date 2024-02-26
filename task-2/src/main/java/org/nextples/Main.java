@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner;
         if (args.length == 0) {
@@ -24,18 +23,23 @@ public class Main {
         }
 
         CommandFactory factory;
-        try {
-            factory = new CommandFactory();
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException(e);
-        }
+        factory = new CommandFactory();
 
         StackCalculator calculator = new StackCalculator(factory);
         while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.charAt(0) == '#') {
+                continue;
+            }
+
             try {
-                calculator.executeCommand(scanner.nextLine());
-            } catch (ReflectiveOperationException e) {
-                throw new RuntimeException(e);
+                calculator.executeCommand(line);
+            }
+            catch (IllegalArgumentException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Invalid command name: " + line);
             }
         }
     }

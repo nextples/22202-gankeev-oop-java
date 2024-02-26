@@ -11,31 +11,33 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class CommandFactory {
-    private HashMap<String, Command> factory;
+    private Properties properties;
+//    private HashMap<String, Command> factory;
     private final String configPath = "/config.properties";
 
-    public CommandFactory() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        factory = new HashMap<>();
+    public CommandFactory() {
+//        factory = new HashMap<>();
+        properties = new Properties();
         this.loadCommands();
     }
 
     public Command createCommand(String name) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        return (Command) Class.forName(name).getDeclaredConstructors()[0].newInstance();
+        String fullName = properties.getProperty(name);
+        return (Command) Class.forName(fullName).getDeclaredConstructors()[0].newInstance();
     }
 
-    private void loadCommands() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Properties properties = new Properties();
+    private void loadCommands() {
         InputStream input;
         input = CommandFactory.class.getResourceAsStream(configPath);
         try {
             properties.load(input);
         } catch (IOException e) {
-            throw new RuntimeException("Configuration file con not be read");
+            throw new RuntimeException("Configuration file can not be read");
         }
-        for (Object key : properties.keySet()) {
-            String commandName = (String) key;
-            Command command = createCommand(commandName);
-            factory.put(commandName, command);
-        }
+//        for (Object key : properties.keySet()) {
+//            String commandName = (String) key;
+//            Command command = createCommand(commandName);
+//            factory.put(commandName, command);
+//        }
     }
 }

@@ -1,39 +1,43 @@
 package org.nextples.stackcalculator;
 
-import java.util.Objects;
+import java.util.List;
 import java.util.regex.*;
 
-public class Push implements ParameterCommand{
-
+public class Push implements ParameterCommand {
     @Override
-    public void execute(String args, ExecutionContext context) throws InvalidArgumentException, InvalidParameterNameException {
+    public void execute(List<String> args, ExecutionContext context) throws IllegalArgumentException {
         if (!isArgsValid(args)) {
-            throw new InvalidArgumentException("Command " + this + " received incorrect arguments\n");
+            throw new IllegalArgumentException("Command PUSH received incorrect arguments: " + args);
+        }
+        String arg = args.getFirst();
+        if (isParameterName(arg) && !context.getParameters().containsKey(arg)) {
+            throw new IllegalArgumentException("Command PUSH received unknown parameter: " + arg);
         }
 
-        args = args.replaceAll(" ", "");
-        if (isNumber(args)) {
-            double value = Double.parseDouble(args);
-            context.stackPush(value);
+        double value;
+        if (isValue(arg)) {
+            value = Double.parseDouble(arg);
         }
         else {
-            double value = context.mapGet(args);
-            if (Objects.isNull(context.mapGet(args))) {
-                throw new InvalidParameterNameException("Command " + this + " received unknown parameter " + args);
-            }
-            context.stackPush(value);
+            value = (double) context.getParameters().get(arg);
         }
+        context.getStack().push(value);
+
     }
 
-    private boolean isArgsValid(String args) {
-        Pattern pushArgPattern = Pattern.compile("^ *((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*)|([A-z][0-z_]*)) *$");
-        Matcher pushArgMatcher = pushArgPattern.matcher(args);
-        return pushArgMatcher.find();
+    private boolean isArgsValid(List<String> args) {
+        return ((args.size() == 1) && (isParameterName(args.getFirst()) | isValue(args.getFirst())));
     }
 
-    private boolean isNumber(String args) {
-        Pattern numberPattern = Pattern.compile("^((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*))$");
-        Matcher numberMatcher = numberPattern.matcher(args);
-        return numberMatcher.find();
+    private boolean isValue(String arg) {
+        Pattern valuePattern = Pattern.compile("^((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*))$");
+        Matcher valueMatcher = valuePattern.matcher(arg);
+        return valueMatcher.find();
+    }
+
+    private boolean isParameterName(String arg) {
+        Pattern parameterPattern = Pattern.compile("^[A-z][0-z_]*$");
+        Matcher parameterMatcher = parameterPattern.matcher(arg);
+        return parameterMatcher.find();
     }
 }

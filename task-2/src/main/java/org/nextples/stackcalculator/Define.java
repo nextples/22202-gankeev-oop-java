@@ -1,45 +1,34 @@
 package org.nextples.stackcalculator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Define implements ParameterCommand {
 
     @Override
-    public void execute(String args, ExecutionContext context) throws InvalidArgumentException {
+    public void execute(List<String> args, ExecutionContext context) throws IllegalArgumentException {
         if (!isArgsValid(args)) {
-            throw new InvalidArgumentException("Command " + this + " received incorrect arguments\n");
+            throw new IllegalArgumentException("Command DEFINE received incorrect arguments: " + args);
         }
-        context.mapPut(getKey(args), getVal(args));
+        else {
+            context.getParameters().put(args.get(0), Double.parseDouble(args.get(1)));
+        }
     }
 
-    private boolean isArgsValid(String args) {
-        Pattern defineArgPattern = Pattern.compile("^ *[A-z][0-z_]* ((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*)) *$");
-        Matcher defineArgMatcher = defineArgPattern.matcher(args);
-        return defineArgMatcher.find();
+    private boolean isArgsValid(List<String> args) {
+        return (isParameterName(args.get(0)) && isValue(args.get(1)) && (args.size() == 2));
     }
 
-    private String getKey(String args) {
-        String[] parsedArgs = args.split(" ");
-        Pattern keyPattern = Pattern.compile("^[A-z][0-z_]*$");
-        for (int i = 0; i < parsedArgs.length; i++) {
-            Matcher keyMatcher = keyPattern.matcher(parsedArgs[i]);
-            if (keyMatcher.find()) {
-                return parsedArgs[i];
-            }
-        }
-        return null;
+    private boolean isValue(String arg) {
+        Pattern valuePattern = Pattern.compile("^((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*))$");
+        Matcher valueMatcher = valuePattern.matcher(arg);
+        return valueMatcher.find();
     }
 
-    private Double getVal(String args) {
-        String[] parsedArgs = args.split(" ");
-        Pattern keyPattern = Pattern.compile("^((-?[0-9]+\\.[0-9]+)|(-?[1-9][0-9]*))$");
-        for (int i = 0; i < parsedArgs.length; i++) {
-            Matcher keyMatcher = keyPattern.matcher(parsedArgs[i]);
-            if (keyMatcher.find()) {
-                return Double.parseDouble(parsedArgs[i]);
-            }
-        }
-        return null;
+    private boolean isParameterName(String arg) {
+        Pattern parameterPattern = Pattern.compile("^[A-z][0-z_]*$");
+        Matcher parameterMatcher = parameterPattern.matcher(arg);
+        return parameterMatcher.find();
     }
 }
