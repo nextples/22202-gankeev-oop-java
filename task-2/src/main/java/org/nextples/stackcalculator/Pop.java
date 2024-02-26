@@ -1,6 +1,5 @@
 package org.nextples.stackcalculator;
 
-import java.util.EmptyStackException;
 
 public class Pop implements NonParameterCommand {
 
@@ -10,6 +9,6 @@ public class Pop implements NonParameterCommand {
             throw new IllegalAccessException("Attempt to pop an element from the empty stack");
         }
 
-        System.out.println(context.getStack().pop());
+        context.getStack().pop();
     }
 }

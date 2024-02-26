@@ -1,6 +1,6 @@
 package org.nextples.stackcalculator;
 
-import org.nextples.CommandFactory;
+import org.nextples.stackcalculator.CommandFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -25,14 +25,6 @@ public class StackCalculator {
         if (command instanceof NonParameterCommand) {
             ((NonParameterCommand) command).execute(context);
         }
-
-//        List<String> args = getArgs(commandLine);
-//        if (args.isEmpty()) {
-//            ((NonParameterCommand)command).execute(context);
-//        }
-//        else {
-//            ((ParameterCommand)command).execute(args, context);
-//        }
     }
 
     private String getCommandName(String commandLine) {

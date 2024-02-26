@@ -1,7 +1,5 @@
 package org.nextples.stackcalculator;
 
-import java.util.EmptyStackException;
-
 public class Mul implements NonParameterCommand {
 
     @Override

@@ -1,7 +1,5 @@
 package org.nextples.stackcalculator;
 
-import java.util.EmptyStackException;
-
 public class Sub implements NonParameterCommand {
 
     @Override
