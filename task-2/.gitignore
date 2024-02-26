@@ -1,5 +1,5 @@
 input.txt
-../task-1
+../task-1/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
