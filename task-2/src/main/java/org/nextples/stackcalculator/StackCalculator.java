@@ -1,12 +1,12 @@
 package org.nextples.stackcalculator;
 
-import org.nextples.stackcalculator.CommandFactory;
-
-import java.lang.reflect.InvocationTargetException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 
 public class StackCalculator {
+    private static final Logger logger = LoggerFactory.getLogger(StackCalculator.class);
     private ExecutionContext context;
     private final CommandFactory factory;
 
@@ -15,7 +15,7 @@ public class StackCalculator {
         this.factory = factory;
     }
 
-    public void executeCommand(String commandLine) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, IllegalArgumentException {
+    public void executeCommand(String commandLine) throws IllegalCommandNameException, IllegalAccessException {
         Command command = factory.createCommand(getCommandName(commandLine));
 
         if (command instanceof ParameterCommand) {
@@ -37,7 +37,8 @@ public class StackCalculator {
         String[] parsedArgs = args.split(" ");
         List<String> argsList = Arrays.asList(parsedArgs);
         if (argsList.isEmpty()) {
-            throw new IllegalArgumentException("Command " + commandLine + "received incorrect arguments\n");
+            logger.error("Command {} received empty arguments", commandName);
+            throw new IllegalArgumentException("Command " + commandName + "received empty arguments");
         }
         argsList = argsList.subList(1, argsList.size());
         return argsList;

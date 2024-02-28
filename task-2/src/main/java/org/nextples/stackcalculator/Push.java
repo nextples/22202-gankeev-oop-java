@@ -1,16 +1,24 @@
 package org.nextples.stackcalculator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.regex.*;
 
 public class Push implements ParameterCommand {
+    private static final Logger logger = LoggerFactory.getLogger(Push.class);
+
     @Override
     public void execute(List<String> args, ExecutionContext context) throws IllegalArgumentException {
+        logger.info("Command PUSH is being run with arguments {}", args);
         if (!isArgsValid(args)) {
+            logger.error("Command PUSH received incorrect arguments: {}", args);
             throw new IllegalArgumentException("Command PUSH received incorrect arguments: " + args);
         }
         String arg = args.getFirst();
         if (isParameterName(arg) && !context.getParameters().containsKey(arg)) {
+            logger.error("Command PUSH received unknown parameter: {}", arg);
             throw new IllegalArgumentException("Command PUSH received unknown parameter: " + arg);
         }
 
@@ -22,6 +30,7 @@ public class Push implements ParameterCommand {
             value = (double) context.getParameters().get(arg);
         }
         context.getStack().push(value);
+        logger.info("Command PUSH was executed successfully");
 
     }
 
