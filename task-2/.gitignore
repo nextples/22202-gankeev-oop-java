@@ -1,5 +1,6 @@
 input.txt
 ../task-1/
+./logs/app.log
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
