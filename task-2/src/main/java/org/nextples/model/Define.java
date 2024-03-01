@@ -13,9 +13,13 @@ public class Define implements ParameterCommand {
 
     @Override
     public void execute(List<String> args, ExecutionContext context) throws IllegalArgumentException {
+        if (args == null) {
+            logger.error("Command DEFINE received null arguments");
+            throw new IllegalArgumentException("Command DEFINE received null arguments");
+        }
         logger.info("Command DEFINE is being run with arguments {}", args);
         if (!isArgsValid(args)) {
-            logger.error("Command DEFINE received incorrect arguments: " + args);
+            logger.error("Command DEFINE received incorrect arguments: {}", args);
             throw new IllegalArgumentException("Command DEFINE received incorrect arguments: " + args);
         }
         else {

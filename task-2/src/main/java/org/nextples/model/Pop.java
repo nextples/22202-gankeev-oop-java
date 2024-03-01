@@ -8,6 +8,7 @@ public class Pop implements NonParameterCommand {
 
     @Override
     public void execute(ExecutionContext context) throws IllegalAccessException {
+        logger.info("Command POP is being run");
         if (context.getStack().empty()) {
             logger.error("Attempt to access an element from an empty stack");
             throw new IllegalAccessException("Attempt to pop an element from the empty stack");
