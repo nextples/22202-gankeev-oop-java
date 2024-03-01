@@ -1,10 +1,11 @@
-package org.nextples;
+package org.nextples.view;
 
 import org.nextples.controller.StackCalculator;
+import org.nextples.error.IllegalCommandNameException;
 import org.nextples.model.CommandFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.nextples.stackcalculator.*;
+
 import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
@@ -48,7 +49,8 @@ public class Main {
             try {
                 calculator.executeCommand(line);
             }
-            catch (IllegalArgumentException | ArithmeticException | IllegalAccessException | IllegalCommandNameException e) {
+            catch (IllegalArgumentException | ArithmeticException | IllegalAccessException |
+                   IllegalCommandNameException e) {
                 if (args.length == 0) {
                     System.err.println(e.getMessage());
                 }

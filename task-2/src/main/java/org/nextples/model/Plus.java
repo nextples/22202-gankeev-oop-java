@@ -1,4 +1,4 @@
-package org.nextples.stackcalculator;
+package org.nextples.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

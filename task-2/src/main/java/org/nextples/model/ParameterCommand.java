@@ -1,4 +1,4 @@
-package org.nextples.stackcalculator;
+package org.nextples.model;
 
 import java.util.List;
 
