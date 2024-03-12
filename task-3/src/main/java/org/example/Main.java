@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame menu = new StartMenu();
+        SeaBattle game = new SeaBattle();
+
     }
 }

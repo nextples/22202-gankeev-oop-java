@@ -1,0 +1,18 @@
+1.  Objective: The objective of the game is to sink all of your opponent's ships before they sink yours.
+
+2.  Setup: Each player arranges their ships secretly on a grid. The grid is typically 10x10 and each player
+    has a fleet of ships, such as an aircraft carrier, battleship, cruiser, submarine, and destroyer.
+
+3.  Gameplay: Players take turns calling out coordinates on the opponent's grid to try and hit their ships.
+    For example, "A-3" or "B-7". The opponent responds with "Miss" if the coordinate doesn't hit a ship or "Hit"
+    if it does.
+
+4.  Hits and Misses: If a player hits a ship, the opponent marks that coordinate as a hit. If a player misses,
+    the opponent marks it as a miss. The goal is to strategically guess where the opponent's ships are and sink
+    them by hitting all the coordinates of a ship.
+
+5.  Sinking Ships: When all the coordinates of a ship are hit, the ship is considered sunk. The player must
+    announce which ship has been sunk.
+
+6.  Winning the Game: The game continues until one player has sunk all of the opponent's ships. That player is
+    declared the winner.
