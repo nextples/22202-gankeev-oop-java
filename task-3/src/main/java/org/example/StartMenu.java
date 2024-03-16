@@ -60,8 +60,8 @@ public class StartMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-
-                GameFrame gameFrame = new GameFrame();
+                Game game = new Game();
+//                GameFrame gameFrame = new GameFrame();
 
 //                JFrame gameMenu = new JFrame("Here will be the game window soon...");
 //                gameMenu.setSize(1366, 768);
