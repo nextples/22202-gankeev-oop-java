@@ -1,4 +1,4 @@
-package org.nextples.view;
+package org.nextples;
 
 import org.nextples.controller.StackCalculator;
 import org.nextples.error.IllegalCommandNameException;
