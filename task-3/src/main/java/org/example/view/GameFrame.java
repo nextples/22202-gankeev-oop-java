@@ -1,4 +1,4 @@
-package org.example;
+package org.example.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,16 +14,7 @@ public class GameFrame extends JFrame {
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Icon.png")));
         setIconImage(icon.getImage());
         this.setLayout(new GridBagLayout());
-
-//        JButton continueButton = createButton("Continue");
-//        JPanel bottomPanel = new JPanel(new BorderLayout());
-//        bottomPanel.add(continueButton, BorderLayout.EAST);
-//        bottomPanel.setBackground(new Color(17, 65, 168));
-//        bottomPanel.setPreferredSize(new Dimension(1534, 96));
-//        this.add(bottomPanel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1/*1330*/, 1, 1), 0, 0));
-
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        this.setVisible(true);
     }
 
     private JButton createButton(String buttonName) {

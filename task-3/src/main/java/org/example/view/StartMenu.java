@@ -1,4 +1,7 @@
-package org.example;
+package org.example.view;
+
+import org.example.model.GameModel;
+import org.example.view.GameView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,17 +63,8 @@ public class StartMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Game game = new Game();
-//                GameFrame gameFrame = new GameFrame();
-
-//                JFrame gameMenu = new JFrame("Here will be the game window soon...");
-//                gameMenu.setSize(1366, 768);
-//
-//                JLabel message = new JLabel("Game will be soon...");
-//                message.setFont(new Font("Comic Sans MS", Font.BOLD, 96));
-//                gameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                gameMenu.add(message);
-//                gameMenu.setVisible(true);
+                GameModel gameModel = new GameModel(10);
+                GameView gameView = new GameView(gameModel);
             }
         });
         buttonsPanel.add(startButton, new GridBagConstraints(0, 0, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(75, 1, 1, 1), 0, 0));

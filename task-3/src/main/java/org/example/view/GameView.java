@@ -1,16 +1,20 @@
-package org.example;
+package org.example.view;
+
+import org.example.model.GameModel;
+import org.example.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Game {
+public class GameView {
     private final JFrame frame;
-    private JPanel shipArrangement;
+
+    private JPanel shipFieldView;
     private boolean isArranged = false;
 
-    public Game() {
+    public GameView(GameModel model) {
         frame = new GameFrame();
 
         JButton continueButton = createButton("Continue");
