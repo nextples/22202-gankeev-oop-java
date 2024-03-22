@@ -1,7 +1,6 @@
-package org.example.view;
+package org.example.view.game;
 
 import org.example.model.GameModel;
-import org.example.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
