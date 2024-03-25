@@ -1,6 +1,6 @@
 input.txt
 /logs/
-/.idea
+.idea/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
