@@ -8,48 +8,45 @@ import java.awt.*;
 public class ButtonsPanel extends JPanel {
     private final MenuController menuController;
 
+    private JComboBox<String> gameMode;
+
     public ButtonsPanel(MenuController menuController) {
         super(new GridBagLayout());
         this.menuController = menuController;
     }
 
     public void init() {
+        String[] fieldSizes = {"10 x 10", "15 x 15", "21 x 21"};
+//        JButton[] fieldSizes = createFieldSizesArray();
+
+        gameMode = new JComboBox<>(fieldSizes);
+        gameMode.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        gameMode.setBackground(new Color(17, 65, 168));
+        gameMode.setForeground(Color.WHITE);
+        gameMode.addActionListener(menuController);
+        this.add(gameMode, new GridBagConstraints(0, 1, 6, 1, 0.0, 0.9, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 1, 1, 1), 0, 0));
+
         JButton startButton = createButton("Start Game");
         startButton.addActionListener(menuController);
-//        startButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                dispose();
-//                GameModel gameModel = new GameModel(10);
-//                GameView gameView = new GameView(gameModel);
-//            }
-//        });
-        this.add(startButton, new GridBagConstraints(0, 0, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(75, 1, 1, 1), 0, 0));
+        this.add(startButton, new GridBagConstraints(0, 0, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(75, 1, 0, 1), 0, 0));
 
         JButton rulesButton = createButton("Rules");
         rulesButton.addActionListener(menuController);
-//        rulesButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                rulesPanel = new RulesPanel();
-//                rulesPanel.init();
-//                cardPanel.add(rulesPanel, "Rules");
-//                menuCardLayout.show(cardPanel, "Rules");
-//            }
-//        });
-        this.add(rulesButton, new GridBagConstraints(0, 1, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+        this.add(rulesButton, new GridBagConstraints(0, 2, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 
         JButton exitButton = createButton("Exit");
         exitButton.addActionListener(menuController);
-//        exitButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                System.exit(0);
-//            }
-//        });
-        this.add(exitButton, new GridBagConstraints(0, 2, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+        this.add(exitButton, new GridBagConstraints(0, 3, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 
         this.setBackground(new Color(179, 255, 255));
+    }
+
+    private JButton[] createFieldSizesArray() {
+        JButton[] gameModes = new JButton[3];
+        gameModes[0] = new JButton("10 x 10");
+        gameModes[1] = new JButton("15 x 15");
+        gameModes[2] = new JButton("21 x 21");
+        return gameModes;
     }
 
     private JButton createButton(String buttonName) {
@@ -58,5 +55,9 @@ public class ButtonsPanel extends JPanel {
         button.setBackground(new Color(17, 65, 168));
         button.setForeground(Color.WHITE);
         return button;
+    }
+
+    public JComboBox<String> getModeSelector() {
+        return gameMode;
     }
 }

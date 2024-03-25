@@ -10,7 +10,7 @@ public class Cell {
 
     private int x;
     private int y;
-    private int texture;
+    private int status;
     private Ship ship;
 
     /**
@@ -37,7 +37,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
-        texture = CELL_WATER;
+        status = CELL_WATER;
         containShip = false;
         wasShot = false;
         isBorder = false;
@@ -66,5 +66,13 @@ public class Cell {
 
     public void setRandomlyChecked(boolean randomlyChecked) {
         this.randomlyChecked = randomlyChecked;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -5,7 +5,7 @@ import org.example.view.menu.StartMenu;
 import javax.swing.*;
 
 public class SeaBattleLauncher {
-    private final StartMenu startMenu;
+//    private final StartMenu startMenu;
 
     public SeaBattleLauncher() {
         try {
@@ -14,7 +14,7 @@ public class SeaBattleLauncher {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        startMenu = new StartMenu();
+        StartMenu startMenu = new StartMenu();
         startMenu.init();
     }
 

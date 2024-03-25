@@ -8,7 +8,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame() {
         super("Sea Battle");
-        this.setSize(1366, 768);
+        this.setSize(new Dimension(1366, 768));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Icon.png")));
@@ -17,11 +17,8 @@ public class GameFrame extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    private JButton createButton(String buttonName) {
-        JButton button = new JButton(buttonName);
-        button.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
-        button.setBackground(new Color(17, 65, 168));
-        button.setForeground(Color.WHITE);
-        return button;
-    }
+//    @Override
+//    public void setExtendedState(int state){
+//
+//    }
 }

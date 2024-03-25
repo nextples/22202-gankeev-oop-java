@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class MenuController implements ActionListener {
     private final StartMenu menu;
+    private int fieldSize;
 
     public MenuController(StartMenu menu) {
         this.menu = menu;
@@ -31,11 +32,33 @@ public class MenuController implements ActionListener {
                 menu.switchCardPanel(StartMenu.BUTTONS_PANEL);
                 break;
 
+
+
             case "Start Game":
+                String mode = (String) menu.getModeSelector().getSelectedItem();
+                switch (mode) {
+                    case "10 x 10":
+                    case null:
+                        fieldSize = 10;
+                        break;
+
+                    case "15 x 15":
+                        fieldSize = 15;
+                        break;
+
+                    case "21 x 21":
+                        fieldSize = 21;
+                        break;
+
+                        default:
+                        fieldSize = 10;
+                        break;
+                }
                 menu.dispose();
-                GameModel gameModel = new GameModel(10);
+                GameModel gameModel = new GameModel(fieldSize);
                 GameView gameView = new GameView(gameModel);
                 break;
+
         }
     }
 }

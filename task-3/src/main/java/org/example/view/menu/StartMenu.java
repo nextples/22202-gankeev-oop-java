@@ -18,7 +18,6 @@ public class StartMenu extends JFrame {
     private JPanel cardPanel;
     private CardLayout menuCardLayout;
 
-
     public StartMenu() {
         super("Sea Battle");
         setSize(1366, 768);
@@ -71,54 +70,13 @@ public class StartMenu extends JFrame {
         }
     }
 
+    public JComboBox<String> getModeSelector() {
+        return buttonsPanel.getModeSelector();
+    }
+
+
+
     public void close() {
         this.dispose();
     }
-
-//    private void createButtonsPanel() {
-//        buttonsPanel = new JPanel(new GridBagLayout());
-//
-//        JButton startButton = createButton("Start Game");
-//        startButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                dispose();
-//                GameModel gameModel = new GameModel(10);
-//                GameView gameView = new GameView(gameModel);
-//            }
-//        });
-//        buttonsPanel.add(startButton, new GridBagConstraints(0, 0, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(75, 1, 1, 1), 0, 0));
-//
-//
-//        JButton rulesButton = createButton("Rules");
-//        rulesButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                rulesPanel = new RulesPanel();
-//                rulesPanel.init();
-//                cardPanel.add(rulesPanel, "Rules");
-//                menuCardLayout.show(cardPanel, "Rules");
-//            }
-//        });
-//        buttonsPanel.add(rulesButton, new GridBagConstraints(0, 1, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-//
-//        JButton exitButton = createButton("Exit");
-//        exitButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                System.exit(0);
-//            }
-//        });
-//        buttonsPanel.add(exitButton, new GridBagConstraints(0, 2, 6, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-//
-//        buttonsPanel.setBackground(new Color(179, 255, 255));
-//    }
-//
-//    private JButton createButton(String buttonName) {
-//        JButton button = new JButton(buttonName);
-//        button.setFont(new Font("Comic Sans MS", Font.BOLD, 64));
-//        button.setBackground(new Color(17, 65, 168));
-//        button.setForeground(Color.WHITE);
-//        return button;
-//    }
 }

@@ -40,7 +40,7 @@ public class RulesPanel extends JPanel {
         button.setForeground(Color.WHITE);
         button.addActionListener(menuController);
 
-        this.add(button, new GridBagConstraints(0, 20, 1, 1, 0.0, 0.9, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, new Insets(0, 1, 1, 1), 0, 0));
+        this.add(button, new GridBagConstraints(0, 21, 1, 1, 0.0, 0.9, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, new Insets(0, 1, 1, 1), 0, 0));
 
     }
 

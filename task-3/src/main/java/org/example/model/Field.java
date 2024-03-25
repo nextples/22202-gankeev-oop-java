@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Random;
 
 public class Field {
-    private int fieldSize;
+    private final int fieldSize;
 //    private int shipNum;
-    private Cell[][] cells;
+    private final Cell[][] cells;
 
     /**
      * Map for ships on the field: size-count
@@ -18,6 +18,7 @@ public class Field {
 
 
     public Field(int fieldSize) {
+        this.fieldSize = fieldSize;
         cells = new Cell[fieldSize][fieldSize];
         for (int i = 0; i < fieldSize; i++) {
             for (int j = 0; j < fieldSize; j++) {
@@ -26,7 +27,6 @@ public class Field {
         }
 
         createConfig();
-        this.fieldSize = fieldSize;
     }
 
     public void setAllShipsRandomly() throws ShipsRandomArrangementException {
@@ -82,6 +82,14 @@ public class Field {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public int getFieldSize() {
+        return fieldSize;
+    }
+
+    public HashMap<Integer, Integer> getConfig() {
+        return config;
     }
 
     private void createConfig() {

@@ -8,14 +8,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameView {
-    private final JFrame frame;
+    private final GameModel model;
 
-    private JPanel shipFieldView;
+    private final GameFrame frame;
+    private final ArrangementFieldPanel arrangementField;
+    private final ArrangementBoxPanel arrangementBoxPanel;
     private boolean isArranged = false;
 
     public GameView(GameModel model) {
         frame = new GameFrame();
+        this.model = model;
+        arrangementField = new ArrangementFieldPanel(model.getPlayerField());
+        arrangementBoxPanel = new ArrangementBoxPanel(model.getPlayerField());
+        arrangementField.setPreferredSize(new Dimension(500, 500));
+//        frame.getContentPane().add(arrangementField);
+        frame.add(arrangementBoxPanel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+        frame.add(arrangementField, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 
+//        this.init();
+        frame.setVisible(true);
+
+
+    }
+
+    private void init() {
         JButton continueButton = createButton("Continue");
         continueButton.addActionListener(new ActionListener() {
             @Override

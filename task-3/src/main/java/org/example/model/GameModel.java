@@ -14,4 +14,27 @@ public class GameModel {
 
     }
 
+    public Field getPlayerField() {
+        return playerField;
+    }
+
+
+
+    public void addSubscriber(Subscriber s) {
+        subscribers.add(s);
+        s.update();
+    }
+
+    public void removeSubscriber(Subscriber o) {
+        subscribers.remove(o);
+    }
+
+    public void updateSubscribers() {
+        int index = 0;
+        while (index < subscribers.size()) {
+            subscribers.get(index).update();
+            index++;
+        }
+    }
+
 }
