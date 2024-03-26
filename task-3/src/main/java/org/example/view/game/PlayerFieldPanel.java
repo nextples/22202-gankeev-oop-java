@@ -19,6 +19,7 @@ public class PlayerFieldPanel extends FieldPanel {
             case CELL_INJURED -> Color.ORANGE;
             case CELL_KILLED -> Color.RED;
             case CELL_MISSED -> Color.GRAY;
+//            case CELL_PICKED -> Color.BLACK;
             default -> null;
         };
     }

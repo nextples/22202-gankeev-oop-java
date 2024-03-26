@@ -1,5 +1,6 @@
 package org.example.view.game;
 
+import org.example.controller.ArrangementController;
 import org.example.model.Field;
 
 import javax.swing.*;
@@ -9,28 +10,32 @@ import java.util.Map;
 
 public class ArrangementBoxPanel extends JPanel {
     private Field field;
-    private HashMap<Integer, Integer> shipConfig;
-
+    private final HashMap<Integer, Integer> shipConfig;
+    private ButtonGroup buttonGroup;
+    private final ArrangementController controller;
 
 
     public ArrangementBoxPanel(Field field) {
         this.field = field;
         this.shipConfig = field.getConfig();
-
+        this.controller = new ArrangementController();
+        controller.setArrangementBox(this);
 
         this.setLayout(new GridBagLayout());
         this.initBox();
     }
 
     private void initBox() {
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
 
         int cnt = 0;
         for (Map.Entry<Integer, Integer> entry : shipConfig.entrySet()) {
             int shipSize = entry.getKey();
             int shipNumb = entry.getValue();
 
-            JRadioButton button = new JRadioButton(shipSize + "-ship ");
+            JRadioButton button = new JRadioButton(shipSize + "-ship");
+            button.setActionCommand(shipSize + "-ship");
+            button.addActionListener(controller);
             button.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
             buttonGroup.add(button);
             button.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
@@ -51,5 +56,9 @@ public class ArrangementBoxPanel extends JPanel {
             cnt++;
         }
         this.setBorder(BorderFactory.createLineBorder(new Color(17, 65, 168)));
+    }
+
+    public ButtonGroup getButtonGroup() {
+        return buttonGroup;
     }
 }

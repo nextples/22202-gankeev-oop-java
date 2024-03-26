@@ -1,9 +1,11 @@
 package org.example.model;
 
+import org.example.service.Observer;
+
 import java.util.ArrayList;
 
 public class GameModel {
-    private ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
+//    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     private final Field playerField;
     private Field computerField;
@@ -20,21 +22,21 @@ public class GameModel {
 
 
 
-    public void addSubscriber(Subscriber s) {
-        subscribers.add(s);
-        s.update();
-    }
-
-    public void removeSubscriber(Subscriber o) {
-        subscribers.remove(o);
-    }
-
-    public void updateSubscribers() {
-        int index = 0;
-        while (index < subscribers.size()) {
-            subscribers.get(index).update();
-            index++;
-        }
-    }
+//    public void addSubscriber(Observer s) {
+//        observers.add(s);
+//        s.update();
+//    }
+//
+//    public void removeSubscriber(Observer o) {
+//        observers.remove(o);
+//    }
+//
+//    public void updateSubscribers() {
+//        int index = 0;
+//        while (index < observers.size()) {
+//            observers.get(index).update();
+//            index++;
+//        }
+//    }
 
 }

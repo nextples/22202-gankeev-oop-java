@@ -1,12 +1,12 @@
 package org.example.view.game;
 
 import org.example.model.Field;
-import org.example.model.Subscriber;
+import org.example.service.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class FieldPanel extends JPanel implements Subscriber {
+public abstract class FieldPanel extends JPanel implements Observer {
     private Field field;
 
     public FieldPanel(Field field) {

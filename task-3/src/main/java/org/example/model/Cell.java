@@ -8,6 +8,8 @@ public class Cell {
     public final static int CELL_KILLED = 5;
     public final static int CELL_MISSED = 6;
 
+//    public final static int CELL_PICKED = 7;
+
     private int x;
     private int y;
     private int status;
@@ -29,9 +31,11 @@ public class Cell {
     private boolean wasShot;
 
     /**
-     * 1 if a shot was fired at the cell
+     * 1 if the cell is the border of the ship
      */
     private boolean isBorder;
+
+    private boolean isPicked;
 
 
     public Cell(int x, int y) {
@@ -42,6 +46,7 @@ public class Cell {
         wasShot = false;
         isBorder = false;
         randomlyChecked = false;
+        isPicked = false;
     }
 
     public void setShip() {
@@ -72,7 +77,7 @@ public class Cell {
         return status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+//    public void setStatus(int status) {
+//        this.status = status;
+//    }
 }

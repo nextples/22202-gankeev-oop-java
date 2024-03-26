@@ -1,5 +1,6 @@
 package org.example.view.game;
 
+import org.example.controller.ArrangementController;
 import org.example.model.GameModel;
 
 import javax.swing.*;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 public class GameView {
     private final GameModel model;
 
+    private final ArrangementController arrangementController;
+
     private final GameFrame frame;
     private final ArrangementFieldPanel arrangementField;
     private final ArrangementBoxPanel arrangementBoxPanel;
@@ -18,17 +21,20 @@ public class GameView {
     public GameView(GameModel model) {
         frame = new GameFrame();
         this.model = model;
-        arrangementField = new ArrangementFieldPanel(model.getPlayerField());
+
+        arrangementController = new ArrangementController();
         arrangementBoxPanel = new ArrangementBoxPanel(model.getPlayerField());
+        arrangementField = new ArrangementFieldPanel(model.getPlayerField(), arrangementBoxPanel);
+
         arrangementField.setPreferredSize(new Dimension(500, 500));
-//        frame.getContentPane().add(arrangementField);
+
         frame.add(arrangementBoxPanel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         frame.add(arrangementField, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 
 //        this.init();
+
+
         frame.setVisible(true);
-
-
     }
 
     private void init() {
