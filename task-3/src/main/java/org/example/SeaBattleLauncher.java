@@ -17,6 +17,4 @@ public class SeaBattleLauncher {
         StartMenu startMenu = new StartMenu();
         startMenu.init();
     }
-
-
 }

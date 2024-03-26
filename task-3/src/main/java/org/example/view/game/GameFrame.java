@@ -16,9 +16,4 @@ public class GameFrame extends JFrame {
         this.setLayout(new GridBagLayout());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
-//    @Override
-//    public void setExtendedState(int state){
-//
-//    }
 }

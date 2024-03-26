@@ -20,23 +20,4 @@ public class GameModel {
         return playerField;
     }
 
-
-
-//    public void addSubscriber(Observer s) {
-//        observers.add(s);
-//        s.update();
-//    }
-//
-//    public void removeSubscriber(Observer o) {
-//        observers.remove(o);
-//    }
-//
-//    public void updateSubscribers() {
-//        int index = 0;
-//        while (index < observers.size()) {
-//            observers.get(index).update();
-//            index++;
-//        }
-//    }
-
 }
