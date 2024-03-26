@@ -92,6 +92,14 @@ public class Field {
         return config;
     }
 
+    public void clearPickedCells() {
+        for (int i = 0; i < fieldSize; i++) {
+            for (int j = 0; j < fieldSize; j++) {
+                cells[i][j].setPicked(false);
+            }
+        }
+    }
+
     private void createConfig() {
         switch (fieldSize) {
             case 10:

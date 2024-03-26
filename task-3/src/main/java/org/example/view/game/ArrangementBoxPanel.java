@@ -2,6 +2,7 @@ package org.example.view.game;
 
 import org.example.controller.ArrangementController;
 import org.example.model.Field;
+import org.example.model.GameModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,23 +10,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArrangementBoxPanel extends JPanel {
-    private Field field;
     private final HashMap<Integer, Integer> shipConfig;
     private ButtonGroup buttonGroup;
-    private final ArrangementController controller;
 
-
-    public ArrangementBoxPanel(Field field) {
-        this.field = field;
-        this.shipConfig = field.getConfig();
-        this.controller = new ArrangementController();
-        controller.setArrangementBox(this);
+    public ArrangementBoxPanel(GameModel model) {
+        this.shipConfig = model.getPlayerField().getConfig();
 
         this.setLayout(new GridBagLayout());
-        this.initBox();
+//        this.initBox();
     }
 
-    private void initBox() {
+    public void init(ArrangementController controller) {
         buttonGroup = new ButtonGroup();
 
         int cnt = 0;
@@ -57,6 +52,10 @@ public class ArrangementBoxPanel extends JPanel {
         }
         this.setBorder(BorderFactory.createLineBorder(new Color(17, 65, 168)));
     }
+
+//    public void addController(ArrangementController controller) {
+//        this.controller = controller;
+//    }
 
     public ButtonGroup getButtonGroup() {
         return buttonGroup;

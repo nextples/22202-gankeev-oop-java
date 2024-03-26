@@ -61,6 +61,14 @@ public class Cell {
         return containShip;
     }
 
+    public boolean isPicked() {
+        return isPicked;
+    }
+
+    public void setPicked(boolean picked) {
+        isPicked = picked;
+    }
+
     public boolean isShot() {
         return wasShot;
     }

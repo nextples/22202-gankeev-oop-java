@@ -1,5 +1,6 @@
 package org.example.view.game;
 
+import org.example.event.Event;
 import org.example.model.Field;
 
 import java.awt.*;
@@ -19,9 +20,12 @@ public class PlayerFieldPanel extends FieldPanel {
             case CELL_INJURED -> Color.ORANGE;
             case CELL_KILLED -> Color.RED;
             case CELL_MISSED -> Color.GRAY;
-//            case CELL_PICKED -> Color.BLACK;
             default -> null;
         };
     }
 
+    @Override
+    public void update(Event event) {
+
+    }
 }

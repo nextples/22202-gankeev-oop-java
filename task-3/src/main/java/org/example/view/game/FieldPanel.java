@@ -40,9 +40,9 @@ public abstract class FieldPanel extends JPanel implements Observer {
 
     abstract protected Color getColorByCellStatus(int status);
 
-    @Override
-    public void update() {
-        this.repaint();
-    }
+//    @Override
+//    public void update() {
+//        this.repaint();
+//    }
 
 }

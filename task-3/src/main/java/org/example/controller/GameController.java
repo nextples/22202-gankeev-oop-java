@@ -10,13 +10,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameController extends Observable implements ActionListener, KeyListener {
-    private GameModel model;
-    private GameView view;
+    private final GameModel model;
+    private final GameView view;
 
+    public GameController(GameView view, GameModel model) {
+        this.model = model;
+        this.view = view;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+//        String textButton = arrangementBox.getButtonGroup().getSelection().getActionCommand();
     }
 
     @Override

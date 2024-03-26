@@ -57,6 +57,7 @@ public class MenuController implements ActionListener {
                 menu.dispose();
                 GameModel gameModel = new GameModel(fieldSize);
                 GameView gameView = new GameView(gameModel);
+                GameController gameController = new GameController(gameView, gameModel);
                 break;
 
         }
