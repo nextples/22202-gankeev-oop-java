@@ -8,11 +8,13 @@ import org.example.service.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import static org.example.model.Ship.SHIP_HORIZONTAL;
 import static org.example.model.Ship.SHIP_VERTICAL;
 
-public class ArrangementFieldPanel extends JPanel implements Observer  {
+public class ArrangementFieldPanel extends JPanel implements Observer {
     private final ArrangementBoxPanel arrangementBox;
 
     private GameModel model;
@@ -21,6 +23,8 @@ public class ArrangementFieldPanel extends JPanel implements Observer  {
     public ArrangementFieldPanel(GameModel model, ArrangementBoxPanel arrangementBox) {
         this.model = model;
         this.arrangementBox = arrangementBox;
+//        arrangementBox.setFocusable(false);
+//        this.setFocusable(true);
 
     }
 
@@ -48,7 +52,6 @@ public class ArrangementFieldPanel extends JPanel implements Observer  {
                 }
             }
         }
-
     }
 
     public void printShip(int x, int y, int size, int orientation) {
@@ -81,10 +84,9 @@ public class ArrangementFieldPanel extends JPanel implements Observer  {
         }
     }
 
-
     @Override
     public void update(org.example.event.Event event) {
-        if (event instanceof ArrangementEvent){
+        if (event instanceof ArrangementEvent) {
             repaint();
         }
     }

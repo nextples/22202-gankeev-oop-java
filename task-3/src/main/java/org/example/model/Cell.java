@@ -69,6 +69,14 @@ public class Cell {
         isPicked = picked;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public boolean isShot() {
         return wasShot;
     }

@@ -22,18 +22,21 @@ public class GameView {
     public GameView(GameModel model) {
         frame = new GameFrame();
         this.model = model;
-//        gameController = new GameController(this, model);
 
         arrangementBox = new ArrangementBoxPanel(model);
         arrangementField = new ArrangementFieldPanel(model, arrangementBox);
         arrangementField.setPreferredSize(new Dimension(500, 500));
         arrangementController = new ArrangementController(model, arrangementField, arrangementBox);
-        arrangementField.addKeyListener(arrangementController);
         arrangementBox.init(arrangementController);
-
+        arrangementField.addKeyListener(arrangementController);
+//        arrangementBox.addKeyListener(arrangementController);
+//        arrangementBox.setFocusable(false);
+        arrangementField.setFocusable(true);
 
         frame.add(arrangementBox, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         frame.add(arrangementField, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+
+//        frame.setFocusable(true);
         frame.setVisible(true);
     }
 
