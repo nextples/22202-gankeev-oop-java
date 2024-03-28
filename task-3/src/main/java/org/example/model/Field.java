@@ -7,22 +7,18 @@ import static org.example.model.Ship.SHIP_VERTICAL;
 
 public class Field {
     private final int fieldSize;
-//    private int shipNum;
     private final Cell[][] cells;
 
     /**
      * Map for ships on the field: size-count
      **/
-//    private final HashMap<Integer, Integer> shipConfig = new HashMap<Integer, Integer>();
-
-    private final HashMap<Integer, ShipNumber> newShipConfig;
-//    private final HashMap<Integer, Integer> shipNumber
+    private final HashMap<Integer, ShipNumber> shipConfig;
 
     public Field(int fieldSize) {
         this.fieldSize = fieldSize;
 
         cells = new Cell[fieldSize][fieldSize];
-        newShipConfig = new HashMap<>();
+        shipConfig = new HashMap<>();
 
         for (int i = 0; i < fieldSize; i++) {
             for (int j = 0; j < fieldSize; j++) {
@@ -30,8 +26,7 @@ public class Field {
             }
         }
 
-        createNewShipConfig();
-//        createConfig();
+        createShipConfig();
     }
 
     /**
@@ -186,8 +181,8 @@ public class Field {
         return fieldSize;
     }
 
-    public HashMap<Integer, ShipNumber> getNewShipConfig() {
-        return newShipConfig;
+    public HashMap<Integer, ShipNumber> getShipConfig() {
+        return shipConfig;
     }
 
     public void clearPickedCells() {
@@ -199,71 +194,38 @@ public class Field {
     }
 
     public ShipNumber getShipNumber(int shipSize) {
-        return newShipConfig.get(shipSize);
+        return shipConfig.get(shipSize);
     }
 
-//    private void createConfig() {
-//        switch (fieldSize) {
-//            case 10:
-//                shipConfig.put(1, 4);
-//                shipConfig.put(2, 3);
-//                shipConfig.put(3, 2);
-//                shipConfig.put(4, 1);
-//                break;
-//            case 15:
-//                shipConfig.put(1, 5);
-//                shipConfig.put(2, 4);
-//                shipConfig.put(3, 3);
-//                shipConfig.put(4, 2);
-//                shipConfig.put(5, 1);
-//                break;
-//            case 21:
-//                shipConfig.put(1, 6);
-//                shipConfig.put(2, 5);
-//                shipConfig.put(3, 4);
-//                shipConfig.put(4, 3);
-//                shipConfig.put(5, 2);
-//                shipConfig.put(6, 1);;
-//                break;
-//            default:
-//                shipConfig.put(1, 4);
-//                shipConfig.put(2, 3);
-//                shipConfig.put(3, 2);
-//                shipConfig.put(4, 1);
-//                break;
-//            }
-//    }
-
-    private void createNewShipConfig() {
+    private void createShipConfig() {
         switch (fieldSize) {
             case 10:
-                newShipConfig.put(1, new ShipNumber(0, 4));
-                newShipConfig.put(2, new ShipNumber(0, 3));
-                newShipConfig.put(3, new ShipNumber(0, 2));
-                newShipConfig.put(4, new ShipNumber(0, 1));
+                shipConfig.put(1, new ShipNumber(0, 4));
+                shipConfig.put(2, new ShipNumber(0, 3));
+                shipConfig.put(3, new ShipNumber(0, 2));
+                shipConfig.put(4, new ShipNumber(0, 1));
                 break;
             case 15:
-                newShipConfig.put(1, new ShipNumber(0, 5));
-                newShipConfig.put(2, new ShipNumber(0, 4));
-                newShipConfig.put(3, new ShipNumber(0, 3));
-                newShipConfig.put(4, new ShipNumber(0, 2));
-                newShipConfig.put(5, new ShipNumber(0, 1));
+                shipConfig.put(1, new ShipNumber(0, 5));
+                shipConfig.put(2, new ShipNumber(0, 4));
+                shipConfig.put(3, new ShipNumber(0, 3));
+                shipConfig.put(4, new ShipNumber(0, 2));
+                shipConfig.put(5, new ShipNumber(0, 1));
                 break;
             case 21:
-                newShipConfig.put(1, new ShipNumber(0, 6));
-                newShipConfig.put(2, new ShipNumber(0, 5));
-                newShipConfig.put(3, new ShipNumber(0, 4));
-                newShipConfig.put(4, new ShipNumber(0, 3));
-                newShipConfig.put(5, new ShipNumber(0, 2));
-                newShipConfig.put(6, new ShipNumber(0, 1));
+                shipConfig.put(1, new ShipNumber(0, 6));
+                shipConfig.put(2, new ShipNumber(0, 5));
+                shipConfig.put(3, new ShipNumber(0, 4));
+                shipConfig.put(4, new ShipNumber(0, 3));
+                shipConfig.put(5, new ShipNumber(0, 2));
+                shipConfig.put(6, new ShipNumber(0, 1));
                 break;
             default:
-                newShipConfig.put(1, new ShipNumber(0, 4));
-                newShipConfig.put(2, new ShipNumber(0, 3));
-                newShipConfig.put(3, new ShipNumber(0, 2));
-                newShipConfig.put(4, new ShipNumber(0, 1));
+                shipConfig.put(1, new ShipNumber(0, 4));
+                shipConfig.put(2, new ShipNumber(0, 3));
+                shipConfig.put(3, new ShipNumber(0, 2));
+                shipConfig.put(4, new ShipNumber(0, 1));
                 break;
         }
     }
-
 }

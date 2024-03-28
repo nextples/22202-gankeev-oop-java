@@ -19,7 +19,7 @@ public class ArrangementBoxPanel extends JPanel implements Observer {
     private final HashMap<Integer, JTextArea> shipSizeNumberMap;
 
     public ArrangementBoxPanel(GameModel model) {
-        this.shipConfig = model.getPlayerField().getNewShipConfig();
+        this.shipConfig = model.getPlayerField().getShipConfig();
         this.shipSizeNumberMap = new HashMap<>();
         this.setLayout(new GridBagLayout());
     }

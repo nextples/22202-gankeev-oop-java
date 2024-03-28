@@ -16,9 +16,9 @@ import static org.example.model.Ship.SHIP_HORIZONTAL;
 import static org.example.model.Ship.SHIP_VERTICAL;
 
 public class ArrangementController extends Observable implements ActionListener, KeyListener {
-    private GameModel model;
-    private ArrangementFieldPanel arrangementField;
-    private ArrangementBoxPanel arrangementBox;
+    private final GameModel model;
+    private final ArrangementFieldPanel arrangementField;
+    private final ArrangementBoxPanel arrangementBox;
 
     public ArrangementController(GameModel model, ArrangementFieldPanel arrangementField, ArrangementBoxPanel arrangementBox) {
         this.model = model;
