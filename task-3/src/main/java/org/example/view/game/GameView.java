@@ -29,9 +29,6 @@ public class GameView {
         arrangementController = new ArrangementController(model, arrangementField, arrangementBox);
         arrangementBox.init(arrangementController);
         arrangementField.addKeyListener(arrangementController);
-//        arrangementBox.addKeyListener(arrangementController);
-//        arrangementBox.setFocusable(false);
-        arrangementField.setFocusable(true);
 
         frame.add(arrangementBox, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         frame.add(arrangementField, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));

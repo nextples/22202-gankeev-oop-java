@@ -1,9 +1,12 @@
 package org.example.controller;
 
 import org.example.event.ArrangementEvent;
+import org.example.event.MovingArrangementEvent;
+import org.example.event.SettingArrangementEvent;
 import org.example.model.Cell;
 import org.example.model.Field;
 import org.example.model.GameModel;
+import org.example.model.Ship;
 import org.example.service.Observable;
 import org.example.view.game.ArrangementBoxPanel;
 import org.example.view.game.ArrangementFieldPanel;
@@ -59,7 +62,7 @@ public class ArrangementController extends Observable implements ActionListener,
         Field field = model.getPlayerField();
         int shipSize = countSize();
         if (determineOrientation(field.getCells()[x][y]) == SHIP_HORIZONTAL) {
-            if (x + shipSize + 1 >= field.getFieldSize()) {
+            if (x + shipSize >= field.getFieldSize()) {
                 return;
             }
             field.getCells()[x][y].setPicked(false);
@@ -103,7 +106,7 @@ public class ArrangementController extends Observable implements ActionListener,
         int shipSize = countSize();
         if (determineOrientation(field.getCells()[x][y]) == SHIP_HORIZONTAL) {
             for (int i = 0; i < shipSize; i++) {
-                field.getCells()[x][y - 1].setPicked(false);
+                field.getCells()[x + i][y].setPicked(false);
                 field.getCells()[x + i][y - 1].setPicked(true);
             }
         }
@@ -135,6 +138,41 @@ public class ArrangementController extends Observable implements ActionListener,
 
     }
 
+    private void turn(int x, int y) {
+        int shipSize = countSize();
+        Field field = model.getPlayerField();
+        if (determineOrientation(field.getCells()[x][y]) == SHIP_HORIZONTAL) {
+            if (y + shipSize > field.getFieldSize()) {
+                for (int i = 0; i < shipSize; i++) {
+                    field.getCells()[x + i][y].setPicked(false);
+                    field.getCells()[x][y - i].setPicked(true);
+                }
+            }
+            else {
+                for (int i = 0; i < shipSize; i++) {
+                    field.getCells()[x + i][y].setPicked(false);
+                    field.getCells()[x][y + i].setPicked(true);
+                }
+
+            }
+        }
+        else {
+            if (x + shipSize > field.getFieldSize()) {
+                for (int i = 0; i < shipSize; i++) {
+                    field.getCells()[x][y + i].setPicked(false);
+                    field.getCells()[x - i][y].setPicked(true);
+                }
+            }
+            else {
+                for (int i = 0; i < shipSize; i++) {
+                    field.getCells()[x][y + i].setPicked(false);
+                    field.getCells()[x + i][y].setPicked(true);
+                }
+
+            }
+        }
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
         Field field = model.getPlayerField();
@@ -146,24 +184,39 @@ public class ArrangementController extends Observable implements ActionListener,
 
                     if (keyChar == 'D' || keyChar == 'd' || keyChar == 'в' || keyChar == 'В') {
                         moveRight(x, y);
-                        arrangementField.update(new ArrangementEvent());
+                        arrangementField.update(new MovingArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'A' || keyChar == 'a' || keyChar == 'ф' || keyChar == 'Ф') {
                         moveLeft(x, y);
-                        arrangementField.update(new ArrangementEvent());
+                        arrangementField.update(new MovingArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'W' || keyChar == 'w' || keyChar == 'ц' || keyChar == 'Ц') {
                         moveUp(x, y);
-                        arrangementField.update(new ArrangementEvent());
+                        arrangementField.update(new MovingArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'S' || keyChar == 's' || keyChar == 'ы' || keyChar == 'Ы') {
                         moveDown(x, y);
+                        arrangementField.update(new MovingArrangementEvent());
+                        return;
+                    }
+
+                    if (keyChar == ' ') {
+                        turn(x, y);
+                        arrangementField.update(new MovingArrangementEvent());
+                        return;
+                    }
+
+                    if (keyChar == '\n') {
+                        Ship ship = new Ship(countSize());
+                        int orientation = determineOrientation(field.getCells()[x][y]);
+                        field.setShip(ship, x, y, orientation);
+                        arrangementBox.update(new SettingArrangementEvent(ship.getSize()));
                         arrangementField.update(new ArrangementEvent());
                         return;
                     }

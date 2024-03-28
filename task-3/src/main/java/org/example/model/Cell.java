@@ -53,12 +53,12 @@ public class Cell {
         containShip = true;
     }
 
-    public void shot() {
-        wasShot = true;
+    public void removeShip() {
+        containShip = false;
     }
 
-    public boolean containShip() {
-        return containShip;
+    public void shot() {
+        wasShot = true;
     }
 
     public boolean isPicked() {
@@ -77,6 +77,26 @@ public class Cell {
         return y;
     }
 
+    public boolean isBorder() {
+        return isBorder;
+    }
+
+    public boolean containShip() {
+        return containShip;
+    }
+
+    public void setBorder() {
+        isBorder = true;
+    }
+
+    public void removeBorder() {
+        isBorder = false;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public boolean isShot() {
         return wasShot;
     }
@@ -93,7 +113,4 @@ public class Cell {
         return status;
     }
 
-//    public void setStatus(int status) {
-//        this.status = status;
-//    }
 }
