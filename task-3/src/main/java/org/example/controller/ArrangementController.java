@@ -1,18 +1,11 @@
 package org.example.controller;
 
 import org.example.event.ArrangementEvent;
-import org.example.event.MovingArrangementEvent;
-import org.example.event.SettingArrangementEvent;
-import org.example.model.Cell;
-import org.example.model.Field;
-import org.example.model.GameModel;
-import org.example.model.Ship;
+import org.example.model.*;
 import org.example.service.Observable;
 import org.example.view.game.ArrangementBoxPanel;
 import org.example.view.game.ArrangementFieldPanel;
 
-import javax.swing.*;
-import javax.swing.event.AncestorListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -184,40 +177,46 @@ public class ArrangementController extends Observable implements ActionListener,
 
                     if (keyChar == 'D' || keyChar == 'd' || keyChar == 'в' || keyChar == 'В') {
                         moveRight(x, y);
-                        arrangementField.update(new MovingArrangementEvent());
+                        arrangementField.update(new ArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'A' || keyChar == 'a' || keyChar == 'ф' || keyChar == 'Ф') {
                         moveLeft(x, y);
-                        arrangementField.update(new MovingArrangementEvent());
+                        arrangementField.update(new ArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'W' || keyChar == 'w' || keyChar == 'ц' || keyChar == 'Ц') {
                         moveUp(x, y);
-                        arrangementField.update(new MovingArrangementEvent());
+                        arrangementField.update(new ArrangementEvent());
                         return;
                     }
 
                     if (keyChar == 'S' || keyChar == 's' || keyChar == 'ы' || keyChar == 'Ы') {
                         moveDown(x, y);
-                        arrangementField.update(new MovingArrangementEvent());
+                        arrangementField.update(new ArrangementEvent());
                         return;
                     }
 
                     if (keyChar == ' ') {
                         turn(x, y);
-                        arrangementField.update(new MovingArrangementEvent());
+                        arrangementField.update(new ArrangementEvent());
                         return;
                     }
 
                     if (keyChar == '\n') {
-                        Ship ship = new Ship(countSize());
-                        int orientation = determineOrientation(field.getCells()[x][y]);
-                        field.setShip(ship, x, y, orientation);
-                        arrangementBox.update(new SettingArrangementEvent(ship.getSize()));
-                        arrangementField.update(new ArrangementEvent());
+                        int shipSize = countSize();
+                        ShipNumber shipNumber = field.getShipNumber(shipSize);
+                        if (shipNumber.getCurrentNumber() < shipNumber.getMaxNumber()) {
+                            Ship ship = new Ship(shipSize);
+                            int orientation = determineOrientation(field.getCells()[x][y]);
+                            field.setShip(ship, x, y, orientation);
+                            shipNumber.setCurrentNumber(shipNumber.getCurrentNumber() + 1);
+                            arrangementBox.update(new ArrangementEvent());
+                            arrangementField.update(new ArrangementEvent());
+                        }
+
                         return;
                     }
                 }

@@ -1,9 +1,10 @@
 package org.example.view.game;
 
 import org.example.controller.ArrangementController;
+import org.example.event.ArrangementEvent;
 import org.example.event.Event;
-import org.example.event.SettingArrangementEvent;
 import org.example.model.GameModel;
+import org.example.model.ShipNumber;
 import org.example.service.Observer;
 
 import javax.swing.*;
@@ -12,13 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArrangementBoxPanel extends JPanel implements Observer {
-    private final HashMap<Integer, Integer> shipConfig;
+    private final HashMap<Integer, ShipNumber> shipConfig;
     private ButtonGroup buttonGroup;
 
     private final HashMap<Integer, JTextArea> shipSizeNumberMap;
 
     public ArrangementBoxPanel(GameModel model) {
-        this.shipConfig = model.getPlayerField().getShipConfig();
+        this.shipConfig = model.getPlayerField().getNewShipConfig();
         this.shipSizeNumberMap = new HashMap<>();
         this.setLayout(new GridBagLayout());
     }
@@ -27,9 +28,9 @@ public class ArrangementBoxPanel extends JPanel implements Observer {
         buttonGroup = new ButtonGroup();
 
         int cnt = 0;
-        for (Map.Entry<Integer, Integer> entry : shipConfig.entrySet()) {
+        for (Map.Entry<Integer, ShipNumber> entry : shipConfig.entrySet()) {
             int shipSize = entry.getKey();
-            int shipNumb = entry.getValue();
+            ShipNumber shipNumb = entry.getValue();
 
             JRadioButton button = new JRadioButton(shipSize + "-ship");
             button.setActionCommand(shipSize + "-ship");
@@ -39,7 +40,7 @@ public class ArrangementBoxPanel extends JPanel implements Observer {
             button.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
             buttonGroup.add(button);
 
-            JTextArea shipNumbText = new JTextArea(String.valueOf(shipNumb));
+            JTextArea shipNumbText = new JTextArea(String.valueOf(shipNumb.getMaxNumber()));
             shipSizeNumberMap.put(shipSize, shipNumbText);
             shipNumbText.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
             shipNumbText.setEditable(false);
@@ -57,11 +58,14 @@ public class ArrangementBoxPanel extends JPanel implements Observer {
         this.setBorder(BorderFactory.createLineBorder(new Color(17, 65, 168)));
     }
 
-    public void reduceShipNumber(int shipSize) {
-        JTextArea textArea = shipSizeNumberMap.get(shipSize);
-        String number = textArea.getText();
-        int newNumber = Integer.parseInt(number) - 1;
-        textArea.setText(String.valueOf(newNumber));
+    public void updateShipNumber() {
+        for (Map.Entry<Integer, ShipNumber> entry : shipConfig.entrySet()) {
+            int shipSize = entry.getKey();
+            ShipNumber shipNumber = entry.getValue();
+            JTextArea textArea = shipSizeNumberMap.get(shipSize);
+            int newNumber = shipNumber.getMaxNumber() - shipNumber.getCurrentNumber();
+            textArea.setText(String.valueOf(newNumber));
+        }
     }
 
     public ButtonGroup getButtonGroup() {
@@ -70,9 +74,8 @@ public class ArrangementBoxPanel extends JPanel implements Observer {
 
     @Override
     public void update(Event event) {
-        if (event instanceof SettingArrangementEvent) {
-            int shipSize = ((SettingArrangementEvent) event).getShipSize();
-            reduceShipNumber(shipSize);
+        if (event instanceof ArrangementEvent) {
+            updateShipNumber();
         }
     }
 }
